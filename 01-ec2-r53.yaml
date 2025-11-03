@@ -11,20 +11,20 @@
     - mongodb
 
   tasks: 
-    - name: create an ec2-instances
-      amazon.aws.ec2_instance:        #module for to create ec2 #amazon spelling
+  - name: create an ec2-instances
+    amazon.aws.ec2_instance:        #module for to create ec2 #amazon spelling
+    name: "{{ item }}"
+    instance_type: t3.micro
+    security_group: "{{ sg_id }}"
+    image_id: "{{ ami_id }}"
+    tags:
       name: "{{ item }}"
-      instance_type: t3.micro
-      security_group: "{{ sg_id }}"
-      image_id: "{{ ami_id }}"
-      tags:
-        name: "{{ item }}"
-      loop: "{{ instance }}"
-      register: ec2_output
+    loop: "{{ instance }}"
+    register: ec2_output
 
-    - name: create an ec2-instances
-      ansible.builtin.debug:
-       msg: "{{ ec2_output}}"
+  - name: create an ec2-instances
+    ansible.builtin.debug:
+     msg: "{{ ec2_output}}"
 
 
     
