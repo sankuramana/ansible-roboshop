@@ -22,7 +22,7 @@
     loop: "{{ instance }}"
     register: ec2_output #should not have blanks?
 
-  - name: create an ec2-instances
+  - name: print ec2_instance
     ansible.builtin.debug:
      msg: "{{ ec2_output}}"
 
