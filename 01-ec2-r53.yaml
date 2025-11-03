@@ -4,7 +4,7 @@
   vars:
     ami_id: ami-09c813fb71547fc4f
     sg_id: sg-0836adfedd0b81ee5 
-    zonde_id: Z0240592U12NCJ6BG5HL
+    zone_id: Z0240592U12NCJ6BG5HL
     domain_name: aws45.fun #  above all required field to cfreate an ec2 usning ansible
 
     instance:
@@ -20,7 +20,7 @@
     tags:
       name: "{{ item }}"
     loop: "{{ instance }}"
-    register: ec2_output
+    register: ec2_output #should not have blanks?
 
   - name: create an ec2-instances
     ansible.builtin.debug:
