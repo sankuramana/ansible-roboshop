@@ -21,26 +21,40 @@
      tags:
        name: "{{ item }}"
     loop: "{{ instance }}"
-
     register: ec2_output #should not have blanks?
 
-  - name: print ec2_output
-    ansible.builtin.debug:
-     msg: "{{ ec2_output}}"     
+  # - name: print ec2_output
+  #   ansible.builtin.debug:
+  #    msg: "{{ ec2_output}}"     
 
-  - name: print public_ip_address
-    ansible.builtin.debug: 
-      msg: "{{ item.instances[0].public_ip_address }}"  #  .instances
-     #when i am tring to access iteam(above line check) loop(below line) should be used
-     #msg is for only printing
-    loop: "{{ ec2_output.results}}"
+  # - name: print public_ip_address
+  #   ansible.builtin.debug: 
+  #     msg: "{{ item.instances[0].public_ip_address }}"  #  .instances
+  #     #✅ item.instances[0] = the first instance (index 0) created by that loop item.
+  #    #when i am tring to access iteam(above line check) loop(below line) should be used
+  #    #msg is for only printing
+  #   loop: "{{ ec2_output.results}}"
 
-  - name: print private_ip_address
-    ansible.builtin.debug:
-      msg: "{{ item.instances[0].private_ip_address }}" # .instances
-     #when i am tring to access iteam(above line check) loop(below line) should be used
-     #msg is for only printing
-    loop: "{{ ec2_output.results}}"    
+  # - name: print private_ip_address
+  #   ansible.builtin.debug:
+  #     msg: "{{ item.instances[0].private_ip_address }}" # .instances
+  #    #when i am tring to access iteam(above line check) loop(below line) should be used
+  #    #msg is for only printing
+  #   loop: "{{ ec2_output.results}}" 
+  ####################################################################
+  #2create route53 module    
+  - name: create route53 module
+    amazon.aws.route53:
+     state: present
+     zone: "{{ domain_name }}"
+     type: A
+     value: "{{ item.instances[0].private_ip_address }}
+     ttl: 1
+     record: "{{ item.item }}.{{domain_name }}"
+     overwrite: true
+    loop: "{{ ec2_output.results }}"  
+
+
 
 
     
