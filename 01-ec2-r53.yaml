@@ -10,7 +10,7 @@
     instance:
     - mongodb
 
-    tasks: 
+  tasks: 
     - name: create an ec2-instances
       amazon.aws.ec2_instance:        #module for to create ec2 #amazon spelling
       name: "{{ item }}"
