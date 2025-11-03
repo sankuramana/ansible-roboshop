@@ -21,6 +21,7 @@
      tags:
        name: "{{ item }}"
     loop: "{{ instance }}"
+    
     register: ec2_output #should not have blanks?
 
   - name: print ec2_instance
