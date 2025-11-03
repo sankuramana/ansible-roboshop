@@ -30,14 +30,14 @@
 
   - name: print public_ip_address
     ansible.builtin.debug: 
-      msg: "{{ item.instance[0].public_ip_address }}"
+      msg: "{{ item.instances[0].public_ip_address }}"  #  .instances
      #when i am tring to access iteam(above line check) loop(below line) should be used
      #msg is for only printing
     loop: "{{ ec2_output.results}}"
 
   - name: print private_ip_address
     ansible.builtin.debug:
-      msg: "{{ item.instance[0].private_ip_address }}"
+      msg: "{{ item.instances[0].private_ip_address }}" # .instances
      #when i am tring to access iteam(above line check) loop(below line) should be used
      #msg is for only printing
     loop: "{{ ec2_output.results}}"    
