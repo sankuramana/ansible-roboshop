@@ -48,7 +48,7 @@
      state: present
      zone: "{{ domain_name }}"
      type: A
-     value: "{{ item.instances[0].private_ip_address }}
+     value: "{{ item.instances[0].private_ip_address }}"
      ttl: 1
      record: "{{ item.item }}.{{domain_name }}"
      overwrite: true
