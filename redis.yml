@@ -31,7 +31,7 @@
     ansible.builtin.service:
       name: redis
       state: started  #if service started if package present or latest
-      enabled: Yes        
+      enabled: Yes       #jdjd 
   
 
       
