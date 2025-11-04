@@ -21,7 +21,7 @@
       regexp: '127.0.0.1' #which pattern should replace
       replace:  '0.0.0.0'  # tihs has to be replaced   
 
-  - name: update  peotected mode yes to no  (line)    #lineinfile
+  - name: update  peotected mode yes to no  (line)    #lineinfile #chcek once updated 0 or not
     ansible.builtin.lineinfile: #it is not a word it was line
       path: /etc/redis/redis.conf   #/etc/mongod.conf   not #momng.conf
       regexp: 'protected-mode' #which pattern should replace
