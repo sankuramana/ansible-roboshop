@@ -8,9 +8,10 @@
     domain_name: aws45.fun #  above all required field to cfreate an ec2 usning ansible
 
     instance:
-    - mongodb
-    - redis
-    - mysql
+    # - mongodb
+    # - redis
+    # - mysql
+    - rabbitmq
 
   tasks: 
   - name: create an ec2-instances
