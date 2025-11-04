@@ -9,7 +9,7 @@
 
     instance:
     - mongodb
-    #- mysql
+    - redis
 
   tasks: 
   - name: create an ec2-instances
@@ -21,7 +21,7 @@
      tags:
        name: "{{ item }}"
     loop: "{{ instance }}"
-    register: ec2_output #should not have blanks?
+    register: ec2_output #capturing output and we are using it for next modules.(route 53)
 
   # - name: print ec2_output
   #   ansible.builtin.debug:
@@ -43,12 +43,17 @@
   #   loop: "{{ ec2_output.results}}" 
   ####################################################################
   #2create route53 module    
+  # inputs for route 53 is public and private ip
   - name: create route53 module
     amazon.aws.route53:
      state: present
      zone: "{{ domain_name }}"
      type: A
-     value: "{{ item.instances[0].private_ip_address }}" #doubt here??????!!!!!!!
+     value: "{{ item.instances[0].private_ip_address }}" 
+     #Yes — the value field tells Route 53 where your traffic should go.
+      #It’s basically the destination of your domain name.
+      #You nailed it — the value field in Route 53 
+      #will contain either your public IP or private IP, based on your use case.
      ttl: 1
      record: "{{ item.item }}.{{domain_name }}"
      overwrite: true
