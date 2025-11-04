@@ -24,8 +24,6 @@
       user: roboshop
       password: roboshop123
       permissions:
-            password: changeme
-      permissions:
       - vhost: /
         configure_priv: .*
         read_priv: .*
