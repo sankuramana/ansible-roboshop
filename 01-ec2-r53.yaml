@@ -48,12 +48,14 @@
      state: present
      zone: "{{ domain_name }}"
      type: A
-     value: "{{ item.instances[0].private_ip_address }}"
+     value: "{{ item.instances[0].private_ip_address }}" #doubt here??????!!!!!!!
      ttl: 1
      record: "{{ item.item }}.{{domain_name }}"
      overwrite: true
     loop: "{{ ec2_output.results }}"  
 
+#aws ec2 describe-instances --filters
+# "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text | wc -w
 
 
 
