@@ -30,6 +30,10 @@
   # - name: print public_ip_address
   #   ansible.builtin.debug: 
   #     msg: "{{ item.instances[0].public_ip_address }}"  #  .instances
+   #item.instances[0] data type is list
+   #it has only 1 instance 
+   #  "ami_launch_index": 0,
+
   #     #✅ item.instances[0] = the first instance (index 0) created by that loop item.
   #    #when i am tring to access iteam(above line check) loop(below line) should be used
   #    #msg is for only printing
@@ -47,7 +51,7 @@
   - name: create route53 module
     amazon.aws.route53:
      state: present
-     zone: "{{ domain_name }}"
+     zone: "{{ domain_name }}" #aws45.fun
      type: A
      value: "{{ item.instances[0].private_ip_address }}" 
      #Yes — the value field tells Route 53 where your traffic should go.
@@ -55,7 +59,7 @@
       #You nailed it — the value field in Route 53 
       #will contain either your public IP or private IP, based on your use case.
      ttl: 1
-     record: "{{ item.item }}.{{domain_name }}"
+     record: "{{ item.item }}.{{domain_name }}" # item. Item contain your server name.(name.domainname)
      overwrite: true
     loop: "{{ ec2_output.results }}"  
 
