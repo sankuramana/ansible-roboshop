@@ -8,7 +8,7 @@
     #when module is not available we use command if other features are not requored
 
   - name: enable redis 7 #command module 
-    ansible.builtin.command: dnf module enable redis:7 -your
+    ansible.builtin.command: dnf module enable redis:7 -y 
 
   - name: install redis #package module
     ansible.builtin.package:
