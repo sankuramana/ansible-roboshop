@@ -7,7 +7,7 @@
     zone_id: Z0240592U12NCJ6BG5HL
     domain_name: aws45.fun #  above all required field to cfreate an ec2 usning ansible
 
-    instances:
+    #instances:
     #we can pass instances through command line
     # - mongodb
     # - redis
