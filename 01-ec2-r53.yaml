@@ -7,7 +7,7 @@
     zone_id: Z0240592U12NCJ6BG5HL
     domain_name: aws45.fun #  above all required field to cfreate an ec2 usning ansible
 
-    instance:
+    instances:
     #we can pass instances through command line
     # - mongodb
     # - redis
@@ -23,7 +23,7 @@
      image_id: "{{ ami_id }}"
      tags:
        name: "{{ item }}"
-    loop: "{{ instance }}"
+    loop: "{{ instances }}"
     register: ec2_output #capturing output and we are using it for next modules.(route 53)
 
   - name: print ec2_output
