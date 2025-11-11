@@ -47,7 +47,7 @@
       dest: /app
       remote_src: yes
 
-  - name: install dependencies
+  - name: install dependencies #npm module from community
     community.general.npm:
       path: /app
 
@@ -81,7 +81,7 @@
   #     msg: "{{ catalogue_output }}"
 
   - name: load products into mongodb
-    ansible.builtin.shell: mongosh --host mongodb.daws86s.fun </app/db/master-data.js
+    ansible.builtin.shell: mongosh --host mongodb.aws45.fun </app/db/master-data.js
     #when: catalogue_output.stdout < 0
     #"stdout"=" -1" string pipe treat as interger
     when: catalogue_output.stdout | int < 0
