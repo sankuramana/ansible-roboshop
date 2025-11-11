@@ -1,6 +1,7 @@
 - name: configure shipping server
   hosts: shipping
   become: yes
+  ###
   tasks:
   - name: install maven
     ansible.builtin.dnf:
@@ -9,7 +10,7 @@
     loop:
     - maven
     - mysql
-
+###
   - name: install mysql python libraries
     ansible.builtin.pip:
       executable: pip3.9
